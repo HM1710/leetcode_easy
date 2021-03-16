@@ -1,12 +1,5 @@
 
-SELECT
-CASE
-    WHEN salary IS NULL THEN NULL
-    ELSE salary
-END AS SecondHighestSalary   
+SELECT MAX(salary) AS SecondHighestSalary    
 FROM employee
-ORDER BY salary DESC
-OFFSET 1 rows
-FETCH NEXT 1 rows only;
-
-
+WHERE Salary < ( SELECT MAX(Salary)
+                 FROM employee);
